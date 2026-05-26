@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ASG-2026</title>
+</head>
+<body>
+    <h1>Analyse des k-mers</h1>
+    <p>Taux d'erreur moyen : {{ average_error }} %</p>
+    <p>Nombre de reads avant filtrage : {{ total_reads }}</p>
+    <p>Nombre de reads après filtrage : {{ filtered_reads }}</p>
+    <p>Nombre total de k-mers : {{ total_kmers }}</p>
+    <p>Nombre de k-mers uniques : {{ unique_kmers }}</p>
+    <img src="{{ url_for('static', filename='histogram.png') }}">
+</body>
+</html>

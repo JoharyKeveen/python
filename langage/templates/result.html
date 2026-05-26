@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultat</title>
+</head>
+<body>
+    <p>Résultat de la prédiction</p>
+    <h1 style="color:  {{ 'green' if prediction == 1 else 'red' }}">Le langage donné est : {{ 'un code' if prediction == 1 else 'pas un code' }}</h1>
+    <p>Résultat de l'algorithme de Sardinas et Paterson est</p>
+    <h1 style="color:  {{ 'green' if sardinas_paterson_result == 1 else 'red' }}">Le langage donné est : {{ 'un code' if sardinas_paterson_result == 1 else 'pas un code' }}</h1>
+    <a href="/">Revenir à la page de saisie</a>
+</body>
+</html>

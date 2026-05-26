@@ -1,0 +1,24 @@
+Scalabilité
+
+Le Filtre de Bloom utilise une structure fixe en bits, donc la mémoire reste presque constante même si on ajoute beaucoup de k-mers.
+Pourtant, Un dictionnaire Python stocke chaque k-mer avec sa valeur, donc plus il y a de données, plus la mémoire augmente beaucoup.
+Donc, le Filtre de Bloom est plus adapté pour travailler avec de très grandes quantités de données ADN.
+
+
+Rapport technique
+
+Dans ce projet, la taille du k est très importante.
+Si k est petit, les séquences sont plus connectées, mais il y a plus d’erreurs et d’ambiguïtés.
+Si k est grand, les séquences sont plus précises, mais on peut perdre des connexions.
+Donc il faut trouver un bon équilibre.
+Le Filtre de Bloom peut créer des faux positifs, ce qui signifie qu’il peut dire qu’un k-mer existe alors qu’il n’existe pas vraiment.
+
+
+Analyse de complexité
+
+Dans les méthodes classiques d’alignement, la complexité est O(n²), car chaque séquence doit être comparée avec toutes les autres.
+Cela devient très lent quand il y a beaucoup de données.
+Dans mon approche, j’utilise un Filtre de Bloom.
+Cela permet de réduire la complexité.
+La mémoire est aussi réduite, car on ne stocke pas toutes les relations entre k-mers.
+Donc, même si on perd un peu en précision à cause des faux positifs, on gagne beaucoup en performance et en scalabilité.

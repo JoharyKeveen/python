@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alignement Reads</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            margin: 40px;
+        }
+
+        textarea{
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .result{
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        pre{
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h1>Alignement de Reads</h1>
+
+    <form method="POST">
+
+        <label>Read 1</label>
+        <textarea name="read1"></textarea>
+
+        <label>Read 2</label>
+        <textarea name="read2"></textarea>
+
+        <button type="submit">Aligner</button>
+
+    </form>
+
+    {% if result %}
+
+    <div class="result">
+
+        <h2>Résultat</h2>
+
+        <p><b>Score :</b> {{ result.score }}</p>
+
+        <p><b>Bloc commun :</b> {{ result.block }}</p>
+
+        <p><b>Position dans read1 :</b> {{ result.start_i }}</p>
+
+        <p><b>Position dans read2 :</b> {{ result.start_j }}</p>
+
+        <hr>
+
+        <pre>
+Read1 : {{ result.read1_gras | safe }}
+Read2 : {{ result.read2_gras | safe }}
+        </pre>
+
+    </div>
+
+    {% endif %}
+
+</body>
+</html>
