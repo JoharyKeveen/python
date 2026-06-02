@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détails pays</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+<h1>{{ pays }}</h1>
+
+<p><b>Capitale :</b> {{ infos.capitale }}</p>
+<p><b>Superficie :</b> {{ infos.superficie }}</p>
+<p><b>Langue :</b> {{ infos.langue }}</p>
+<p><b>Population capitale :</b> {{ infos.population_capitale }}</p>
+
+<div id="map" style="height:500px;"></div>
+
+<script>
+
+var lat = "{{ infos.latitude }}";
+var lon = "{{ infos.longitude }}";
+
+// si coords vides → fallback monde
+if (!lat || !lon) {
+    lat = 0;
+    lon = 0;
+}
+
+var map = L.map('map').setView([lat, lon], 5);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+L.marker([lat, lon]).addTo(map);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des pays</title>
+</head>
+<body>
+
+<h1>Choisir un pays</h1>
+
+<form action="/details" method="GET">
+
+    <select name="pays">
+
+        {% for p in pays %}
+        <option value="{{ p[1] }}">
+            {{ p[1] }}
+        </option>
+        {% endfor %}
+
+    </select>
+
+    <button type="submit">Afficher</button>
+
+</form>
+
+</body>
+</html>
