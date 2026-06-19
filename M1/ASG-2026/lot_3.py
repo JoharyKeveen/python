@@ -32,10 +32,13 @@ def extend_kmer(kmer, base):
     return kmer[1:] + base
 
 
-def on_the_fly(seed, bloom, k, max_steps=50):
+def on_the_fly(seed, bloom, max_steps=50):
     contigs = []
 
     def exploration(current, path, visited):
+        if current in visited:
+            return
+        
         if len(path) >= max_steps:
             contigs.append(path)
             return
@@ -53,7 +56,7 @@ def on_the_fly(seed, bloom, k, max_steps=50):
             return
 
         if len(neighbors) > 1:
-            contigs.append(path)
+            contigs.append(path + " [BIFURCATION]")
             for n in neighbors:
                 exploration(n, path + n[-1], visited.copy())
         else:
@@ -75,7 +78,7 @@ for kmer in solid_kmers_list:
 print("Nombre de k-mers solides:", len(solid_kmers_list))
 
 if len(solid_kmers_list) > 0:
-    seed = solid_kmers_list[0]
-    contigs = on_the_fly(seed, bf, k)
+    seed = solid_kmers_list[80]
+    contigs = on_the_fly(seed, bf)
     for c in contigs:
         print("CONTIG:", c)

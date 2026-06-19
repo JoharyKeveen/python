@@ -36,13 +36,6 @@ def phred_score(char):
     return ord(char) - 33
 
 
-def average_quality(quality_string):
-    scores = [phred_score(c) for c in quality_string]
-    if len(scores) == 0:
-        return 0
-    return sum(scores) / len(scores)
-
-
 def average_error_rate(quality_string):
     probs = []
     for c in quality_string:
@@ -91,12 +84,15 @@ def count_kmer_frequencies(all_kmers):
 
 
 def plot_histogram(frequencies):
-    values = list(frequencies.values())
-    plt.figure(figsize=(10,5))
-    plt.hist(values, bins=30)
-    plt.xlabel("Fréquence des k-mers")
-    plt.ylabel("Nombre de k-mers")
-    plt.title("Histogramme des fréquences des k-mers")
+    kmers = list(frequencies.keys())
+    counts = list(frequencies.values())
+    plt.figure(figsize=(12, 6))
+    plt.bar(kmers, counts)
+    plt.xlabel("K-mer")
+    plt.ylabel("Nombre d'apparitions")
+    plt.title("Fréquence de chaque k-mer")
+    plt.xticks(rotation=90)  
+    plt.tight_layout()
     plt.savefig("static/histogram.png")
     plt.close()
 
@@ -108,6 +104,7 @@ def index():
     export_fasta(filtered_reads,"output/filtered_reads.fasta")
     all_kmers = kmers(filtered_reads, K)
     kmer_frequencies = count_kmer_frequencies(all_kmers)
+    print(kmer_frequencies )
     plot_histogram(kmer_frequencies)
 
     total_error = 0
