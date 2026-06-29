@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.optimize import minimize
 
+# minimiser
 def f(x):
     return (x[0]-1)**2 + (x[1]-2)**2 + x[0]*x[1]
 

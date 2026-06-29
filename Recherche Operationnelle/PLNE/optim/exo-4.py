@@ -1,12 +1,13 @@
 import numpy as np
 from scipy.optimize import minimize
 
+# minimiser
 def objective( x ):
-    return (x[0]-2)**2 + (x[1]+1)**2
+    return 3*x[0]**2 + 2*x[1]**2 + x[0]*x[1]
 
-constraint = {'type': 'eq', 'fun': lambda x: x[0] + 2*x[1] - 3}
+constraint = {'type': 'eq', 'fun': lambda x: x[0] + x[1] - 100}
 
-x0 = np.array([0.0, 0.0])
+x0 = np.array([50, 50])
 
 result = minimize(objective ,x0,constraints =[constraint] , method ="SLSQP")
 
